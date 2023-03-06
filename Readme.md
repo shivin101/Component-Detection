@@ -1,11 +1,25 @@
-1)The code files are divided into segments depending on their funciton
+### Component Detection on PCB boards
+## Requirements
+* [Anaconda](https://www.anaconda.com/download/)
+* PyTorch
+```
+conda install pytorch torchvision -c pytorch
+```
+* OpenCV
+```
+pip install python-opencv
+```
+* Scikit Learn and Scikit Image
+```
+pip install sklearn skimage
+```
+The algorithm for component detection can be summarised as 
+1) Detect edges using BCDN network 
+2) Use the edge map to identify components using contours as boundinb boxes
+3) Use a trained Faster-RCNN to detect components on boards as bounding boxes
+4) Refine the collection of bounding boxes from step 2 and 3 using a DSU
 
-2)For running the network change the root and model_root depending on your requirement
+![Edge detection using BCDN](boards/4.png?raw=True)
 
-3)The root folder contains the path to the height maps and raw images for edge detection 
 
-4) The array index selects the board from the root folder to run the algorithm for
-
-5)The final result for the board are stored in res array. Though they are not saved as of now.
-
-6)The results can be saved a numpy array or any other format as desired
+The configuration for running the network is defined inside configurations.ini 
